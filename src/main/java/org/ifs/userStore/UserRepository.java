@@ -86,15 +86,18 @@ public class UserRepository {
 //        return findUserByUsernameOrEmail(username).getPassword().equals(password);
         try{
             connection = DriverManager.getConnection("jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=cmbpde2293)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=s2293)))",username, password);
-        }
-        catch (SQLException e){
-            System.out.println("Connection error!");
-        }
-
-        if(connection != null){
             return true;
         }
-        return false;
+        catch (SQLException e){
+            System.out.println(e);
+            System.out.println("Connection error!");
+            return false;
+        }
+
+//        if(connection != null){
+//            return true;
+//        }
+//        return false;
     }
 
     public boolean updateCredentials(String username, String password) {
