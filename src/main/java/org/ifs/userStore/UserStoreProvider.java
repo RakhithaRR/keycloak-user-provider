@@ -120,7 +120,6 @@ public class UserStoreProvider implements UserStorageProvider, UserLookupProvide
     public UserModel getUserByEmail(String email, RealmModel realm) {
 
 //        log.debugv("lookup user by username: realm={0} email={1}", realm.getId(), email);
-
         return getUserByUsername(email, realm);
     }
 

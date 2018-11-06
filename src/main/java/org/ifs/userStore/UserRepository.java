@@ -12,7 +12,9 @@ import java.util.stream.Collectors;
 public class UserRepository {
 
     private List<User> users;
-    private final String SELECT_QUERY = "SELECT USER_ID, USERNAME FROM DBA_USERS ORDER BY USER_ID";
+        private final String SELECT_QUERY = "SELECT USERNAME, USER_ID, ORACLE_USER, WEB_USER, DESCRIPTION FROM\n" +
+                                            "DBA_USERS LEFT JOIN FND_USER_TAB\n" +
+                                            "ON DBA_USERS.USERNAME = FND_USER_TAB.IDENTITY";
 
     private Connection connection = null;
 
@@ -45,8 +47,22 @@ public class UserRepository {
                 while(rs.next()){
                     String id = rs.getString("user_id");
                     String username = rs.getString("username");
+                    String description = rs.getString("description");
+                    String fname = "";
+                    String lname = "";
+                    if(description != null){
+                        String[] names = description.split(" ");
+                        if(names.length != 2){
+                            fname = description;
+                        }
+                        else{
+                            fname = names[0];
+                            lname = names[1];
+                        }
 
-                    User user = new User(id,username);
+                    }
+
+                    User user = new User(id,username,fname,lname);
                     users.add(user);
                 }
                 connection.close();

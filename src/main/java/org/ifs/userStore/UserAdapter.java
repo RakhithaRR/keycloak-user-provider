@@ -34,8 +34,8 @@ public class UserAdapter extends AbstractUserAdapterFederatedStorage {
 
     @Override
     public String getEmail() {
-//        return user.getEmail();
-        return null;
+        return user.getEmail();
+//        return null;
     }
 
     @Override
@@ -45,8 +45,8 @@ public class UserAdapter extends AbstractUserAdapterFederatedStorage {
 
     @Override
     public String getFirstName() {
-//        return user.getFirstName();
-        return null;
+        return user.getFirstName();
+//        return null;
     }
 
     @Override
@@ -56,8 +56,8 @@ public class UserAdapter extends AbstractUserAdapterFederatedStorage {
 
     @Override
     public String getLastName() {
-//        return user.getLastName();
-        return null;
+        return user.getLastName();
+//        return null;
     }
 
     @Override
